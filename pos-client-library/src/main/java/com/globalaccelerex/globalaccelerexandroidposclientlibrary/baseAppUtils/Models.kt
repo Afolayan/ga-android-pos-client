@@ -106,11 +106,16 @@ internal data class TransactionPurchaseRequest(
         val print: String
 )
 
+internal data class BalanceRequest(
+        val transType: String,
+        val print: String
+)
+
 internal data class CardTransactionPreAuthCompletionRequest(
         val transType: String,
         val amount: String,
         val print: String,
-        val reference: String
+        val rrn: String?
 )
 
 internal data class TransactionPurchaseWithCashBackRequest(

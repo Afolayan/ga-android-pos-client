@@ -193,7 +193,7 @@ internal class TransactionRequest {
                 transType = TRANSACTION_TYPE_PRE_AUTH_PURCHASE_COMPLETION,
                 amount = amount.toPosAmount(),
                 print = (!customPrint).toString(),
-                reference = reference
+                rrn = reference
             )
         val transJson = Gson().toJson(transactionObject)
         val intent = Intent(TRANSACTION_REQUEST_INTENT_ADDRESS)
@@ -490,9 +490,8 @@ internal class TransactionRequest {
         customPrint: Boolean
     ) {
         val transactionObject =
-            TransactionPurchaseRequest(
+            BalanceRequest(
                 transType = TRANSACTION_TYPE_CARD_BALANCE,
-                amount = "0.00",
                 print = customPrint.toString()
             )
         val transJson = Gson().toJson(transactionObject)
