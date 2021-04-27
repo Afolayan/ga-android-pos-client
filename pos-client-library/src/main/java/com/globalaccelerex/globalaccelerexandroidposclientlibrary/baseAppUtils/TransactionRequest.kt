@@ -492,7 +492,7 @@ internal class TransactionRequest {
         val transactionObject =
             BalanceRequest(
                 transType = TRANSACTION_TYPE_CARD_BALANCE,
-                print = customPrint.toString()
+                print = (!customPrint).toString()
             )
         val transJson = Gson().toJson(transactionObject)
         val intent = Intent(TRANSACTION_REQUEST_INTENT_ADDRESS)
