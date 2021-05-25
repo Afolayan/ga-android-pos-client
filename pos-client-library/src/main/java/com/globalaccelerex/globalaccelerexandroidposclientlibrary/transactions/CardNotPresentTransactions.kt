@@ -39,7 +39,7 @@ class CardNotPresentTransactions(countryCode: Countries) {
         customPrint: Boolean,
         callingComponent: Any
     ) {
-        require(cardNumber.length in 12..18) { "Card Number should be between 12 and 18 digits" }
+        require(cardNumber.length in 12..19) { "Card Number should be between 12 and 19 digits" }
         require(cardExpiryDate.length == 4) { "Card expiry should be of format yyMM" }
         transactionRequest.performCNPTransactionRequest(
             cardNumber = cardNumber,
@@ -77,7 +77,7 @@ class CardNotPresentTransactions(countryCode: Countries) {
         customPrint: Boolean,
         callingComponent: Any
     ) {
-        require(cardNumber.length in 12..18) { "Card Number should be between 12 and 18 digits" }
+        require(cardNumber.length in 12..19) { "Card Number should be between 12 and 19 digits" }
         require(cardExpiryDate.length == 4) { "Card expiry should be of format yyMM"}
         require(amount >= cashBackAmount) { "Cash back amount cannot be greater than transaction amount" }
         transactionRequest.performCNPCashBackTransactionRequest(
@@ -114,7 +114,7 @@ class CardNotPresentTransactions(countryCode: Countries) {
         cvv: String,
         callingComponent: Any
     ) {
-        require(cardNumber.length in 12..18) { "Card Number should be between 12 and 18 digits" }
+        require(cardNumber.length in 12..19) { "Card Number should be between 12 and 19 digits" }
         require(cardExpiryDate.length == 4) { "Card expiry should be of format yyMM" }
         transactionRequest.performCNPPreAuthTransactionRequest(
             cardNumber = cardNumber,
@@ -151,7 +151,7 @@ class CardNotPresentTransactions(countryCode: Countries) {
         cvv: String,
         reference: String
     ) {
-        require(cardNumber.length in 12..18) { "Card Number should be between 12 and 18 digits" }
+        require(cardNumber.length in 12..19) { "Card Number should be between 12 and 19 digits" }
         require(cardExpiryDate.length == 4) { "Card expiry should be of format yyMM" }
         transactionRequest.performCNPPreAuthCompletionTransactionRequest(
             cardNumber = cardNumber,
@@ -185,7 +185,7 @@ class CardNotPresentTransactions(countryCode: Countries) {
         callingComponent: Any,
         cvv: String
     ) {
-        require(cardNumber.length in 12..18) { "Card Number should be between 12 and 18 digits" }
+        require(cardNumber.length in 12..19) { "Card Number should be between 12 and 19 digits" }
         require(cardExpiryDate.length == 4) { "Card expiry should be of format yyMM" }
         transactionRequest.performCNPCardBalanceTransactionRequest(
             cardNumber = cardNumber,
@@ -219,7 +219,7 @@ class CardNotPresentTransactions(countryCode: Countries) {
         cvv: String,
         callingComponent: Any
     ) {
-        require(cardNumber.length in 12..18) { "Card Number should be between 12 and 18 digits" }
+        require(cardNumber.length in 12..19) { "Card Number should be between 12 and 19 digits" }
         require(cardExpiryDate.length == 4) { "Card expiry should be of format yyMM" }
         transactionRequest.performCNPRefundTransactionRequest(
             cardNumber = cardNumber,
@@ -256,7 +256,7 @@ class CardNotPresentTransactions(countryCode: Countries) {
         reference: String,
         cvv: String
     ) {
-        require(cardNumber.length in 12..18) { "Card Number should be between 12 and 18 digits" }
+        require(cardNumber.length in 12..19) { "Card Number should be between 12 and 19 digits" }
         require(cardExpiryDate.length == 4) { "Card expiry should be of format yyMM" }
         transactionRequest.performCNPReversalTransactionRequest(
             cardNumber = cardNumber,

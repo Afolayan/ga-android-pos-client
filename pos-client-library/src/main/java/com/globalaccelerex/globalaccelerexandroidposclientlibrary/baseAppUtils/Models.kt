@@ -76,6 +76,7 @@ data class CardTransaction(
         val statuscode: String?,
         val terminalID: String?,
         val balance: String?,
+        val currency: String?,
     val transactionType: String?
 ) : Parcelable
 
