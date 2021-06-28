@@ -5,6 +5,7 @@ internal object BaseAppConstants {
     const val PARAMETERS_REQUEST_INTENT_ADDRESS = "com.globalaccelerex.utility"
     const val KEY_EXCHANGE_REQUEST_INTENT_ADDRESS = "com.globalaccelerex.keyexchange"
     const val TRANSACTION_REQUEST_INTENT_ADDRESS = "com.globalaccelerex.transaction"
+    const val REFUND_INTENT_ADDRESS = "com.globalaccelerex.refund"
     const val MOBILE_MONEY_TRANSACTION_INTENT_ADDRESS = "com.globalaccelerex.gh_mobile_money"
     const val CARD_NOT_PRESENT_TRANSACTION_INTENT = "com.globalaccelerex.card_not_present"
     const val PRINTER_INTENT_ADDRESS = "com.globalaccelerex.printer"

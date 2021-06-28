@@ -131,6 +131,18 @@ class CardTransactions {
         )
     }
 
+    fun refund(
+        rrn: String,
+        callingComponent: Any,
+        customPrint: Boolean
+    ) {
+        transactionRequest.performCPRefund(
+            rrn = rrn,
+            callingComponent = callingComponent,
+            customPrint = customPrint
+        )
+    }
+
     /**
      * This method is used to check card balance.
      * @param callingComponent The calling component is the class from which this method is called.

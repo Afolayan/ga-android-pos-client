@@ -231,6 +231,26 @@ class CardNotPresentTransactions(countryCode: Countries) {
         )
     }
 
+    fun refund(
+        rrn: String,
+        cardNumber: String,
+        cardExpiryDate: String,
+        customPrint: Boolean,
+        cvv: String,
+        callingComponent: Any
+    ) {
+        require(cardNumber.length in 12..19) { "Card Number should be between 12 and 19 digits" }
+        require(cardExpiryDate.length == 4) { "Card expiry should be of format yyMM" }
+        transactionRequest.performCNPRefund(
+            cardNumber = cardNumber,
+            expiryDate = cardExpiryDate,
+            customPrint = customPrint,
+            callingComponent = callingComponent,
+            cvv = cvv,
+            rrn = rrn
+        )
+    }
+
     /**
      * This method is used to make card not present reversal transactions.
      * This function should only be used with Kenya or Ghana configurations.

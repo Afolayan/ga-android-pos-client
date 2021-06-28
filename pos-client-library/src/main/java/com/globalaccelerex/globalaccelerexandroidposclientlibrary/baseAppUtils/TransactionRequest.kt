@@ -7,6 +7,7 @@ import com.globalaccelerex.globalaccelerexandroidposclientlibrary.baseAppUtils.B
 import com.globalaccelerex.globalaccelerexandroidposclientlibrary.baseAppUtils.BaseAppConstants.MOBILE_MONEY_REQUEST_DATA_TAG
 import com.globalaccelerex.globalaccelerexandroidposclientlibrary.baseAppUtils.BaseAppConstants.MOBILE_MONEY_TRANSACTION
 import com.globalaccelerex.globalaccelerexandroidposclientlibrary.baseAppUtils.BaseAppConstants.MOBILE_MONEY_TRANSACTION_INTENT_ADDRESS
+import com.globalaccelerex.globalaccelerexandroidposclientlibrary.baseAppUtils.BaseAppConstants.REFUND_INTENT_ADDRESS
 import com.globalaccelerex.globalaccelerexandroidposclientlibrary.baseAppUtils.BaseAppConstants.REQUEST_DATA_TAG
 import com.globalaccelerex.globalaccelerexandroidposclientlibrary.baseAppUtils.BaseAppConstants.TRANSACTION_REQUEST_INTENT_ADDRESS
 import com.globalaccelerex.globalaccelerexandroidposclientlibrary.baseAppUtils.BaseAppConstants.TRANSACTION_TYPE_CARD_BALANCE
@@ -153,6 +154,30 @@ internal class TransactionRequest {
                 callingComponent.startActivityForResult(intent, CP_REFUND_REQUEST_CODE)
             }
             else ->  throw UnsupportedCallingComponentException("Unsupported calling component.")
+        }
+    }
+
+    fun performCPRefund(
+        rrn: String,
+        customPrint: Boolean,
+        callingComponent: Any
+    ) {
+        val transactionObject = RefundTransaction(
+            rrn = rrn,
+            print = (!customPrint).toString()
+        )
+
+        val transJson = Gson().toJson(transactionObject)
+        val intent = Intent(REFUND_INTENT_ADDRESS)
+        intent.putExtra(REQUEST_DATA_TAG, transJson)
+        when (callingComponent) {
+            is Fragment -> {
+                callingComponent.startActivityForResult(intent, CP_REFUND_REQUEST_CODE)
+            }
+            is Activity -> {
+                callingComponent.startActivityForResult(intent, CP_REFUND_REQUEST_CODE)
+            }
+            else -> throw UnsupportedCallingComponentException("Unsupported calling component.")
         }
     }
 
@@ -385,6 +410,36 @@ internal class TransactionRequest {
             )
         val transJson = Gson().toJson(transactionObject)
         val intent = Intent(CARD_NOT_PRESENT_TRANSACTION_INTENT)
+        intent.putExtra(REQUEST_DATA_TAG, transJson)
+        when (callingComponent) {
+            is Fragment -> {
+                callingComponent.startActivityForResult(intent, CNP_REFUND_REQUEST_CODE)
+            }
+            is Activity -> {
+                callingComponent.startActivityForResult(intent, CNP_REFUND_REQUEST_CODE)
+            }
+            else -> throw UnsupportedCallingComponentException("Unsupported calling component.")
+        }
+    }
+
+    fun performCNPRefund(
+        cardNumber: String,
+        expiryDate: String,
+        cvv: String,
+        rrn: String,
+        customPrint: Boolean,
+        callingComponent: Any
+    ) {
+        val transactionObject = CardNotPresentRefundRequest(
+            rrn = rrn,
+            print = (!customPrint).toString(),
+            cardNumber = cardNumber,
+            expiryDate = expiryDate,
+            cvv = cvv
+        )
+
+        val transJson = Gson().toJson(transactionObject)
+        val intent = Intent(REFUND_INTENT_ADDRESS)
         intent.putExtra(REQUEST_DATA_TAG, transJson)
         when (callingComponent) {
             is Fragment -> {

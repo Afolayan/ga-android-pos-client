@@ -2,6 +2,7 @@ package com.globalaccelerex.globalaccelerexandroidposclientlibrary.baseAppUtils
 
 import android.os.Parcelable
 import com.globalaccelerex.globalaccelerexandroidposclientlibrary.baseAppUtils.BaseAppConstants.MOBILE_MONEY_STATUS_CHECK
+import com.globalaccelerex.globalaccelerexandroidposclientlibrary.baseAppUtils.BaseAppConstants.TRANSACTION_TYPE_REFUND
 import com.globalaccelerex.globalaccelerexandroidposclientlibrary.util.RequestStatus
 import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
@@ -67,6 +68,7 @@ data class CardTransaction(
         val merchantCategoryCode: String?,
         val merchantId: String?,
         val merchantName: String?,
+        val merchantTelephone: String?,
         val message: String?,
         val nuban: String?,
         val pinType: String?,
@@ -210,3 +212,25 @@ internal data class CardRefundTransactionObject(
         val amount: String,
         val print: String
 ): RefundTransactionObject()
+
+enum class CardTransactionType(description: String) {
+        CP("CardPresent"),
+        CNP("CardNotPresent")
+}
+
+data class RefundTransaction(
+        val rrn: String,
+        val cardTransactionType: CardTransactionType = CardTransactionType.CP,
+        val transType: String = TRANSACTION_TYPE_REFUND,
+        val print: String
+)
+
+internal data class CardNotPresentRefundRequest(
+        val cardNumber: String,
+        val expiryDate: String,
+        val cvv: String,
+        val print: String,
+        val rrn: String,
+        var transType: String = TRANSACTION_TYPE_REFUND,
+        val cardTransactionType: CardTransactionType = CardTransactionType.CNP
+)
